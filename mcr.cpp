@@ -1,23 +1,28 @@
 #include <iostream>
 using namespace std;
 
-bool isWin(char game[3][3]){
-    if (game[0][0] == game[0][1] && game[0][1] == game[0][2] && (game[0][0] == 'X' || game[0][0] == 'O')) return true;
-    if (game[1][0] == game[1][1] && game[1][1] == game[1][2] && (game[1][0] == 'X' || game[1][0] == 'O')) return true; 
-    if (game[2][0] == game[2][1] && game[2][1] == game[2][2] && (game[2][0] == 'X' || game[2][0] == 'O')) return true;
-    // column
-    if (game[0][0] == game[1][0] && game[1][0] == game[2][0] && (game[0][0] == 'X' || game[0][0] == 'O')) return true;
-    if (game[0][1] == game[1][1] && game[1][1] == game[2][1] && (game[0][1] == 'X' || game[0][1] == 'O')) return true; 
-    if (game[0][2] == game[1][2] && game[1][2] == game[2][2] && (game[0][2] == 'X' || game[0][2] == 'O')) return true; 
-    // diagonal 
-    if (game[0][0] == game[1][1] && game[1][1] == game[2][2] && (game[0][0] == 'X' || game[0][0] == 'O')) return true; 
-    if (game[0][2] == game[1][1] && game[1][1] == game[2][0] && (game[0][2] == 'X' || game[0][2] == 'O')) return true; 
-    return false;
-}
-
 bool isFill(char game[3][3],int i,int j){
     if (game[i][j] == 'X' || game[i][j] == 'O')
         return true;
+    return false;
+}
+
+bool isWin(char game[3][3]){
+    //先检测是否填了，如果没填，则与之相关的行、列、斜线都不用判断了。
+    if (isFill(game, 0, 0)){
+        if (game[0][0] == game[0][1] && game[0][1] == game[0][2]) return true;
+        if (game[0][0] == game[1][0] && game[1][0] == game[2][0]) return true;
+    }
+    else if(isFill(game, 1, 1)){
+        if (game[1][0] == game[1][1] && game[1][1] == game[1][2]) return true;
+        if (game[0][1] == game[1][1] && game[1][1] == game[2][1]) return true; 
+        if (game[0][0] == game[1][1] && game[1][1] == game[2][2]) return true; 
+        if (game[0][2] == game[1][1] && game[1][1] == game[2][0]) return true; 
+    }
+    else if(isFill(game, 2, 2)){
+        if (game[2][0] == game[2][1] && game[2][1] == game[2][2]) return true;
+        if (game[0][2] == game[1][2] && game[1][2] == game[2][2]) return true; 
+    }
     return false;
 }
 
