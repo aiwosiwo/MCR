@@ -63,9 +63,9 @@ int main(){
         cout << "Tie!" << endl;
     for (int p=0; p<3; p++){
         for (int q=0; q<3; q++){
-            cout << game[p][q] << " ";
+            cout << game[p][q] << "\t";
         }
-        cout << endl;
+        cout << endl << endl;
     }
     return 0;
 }
