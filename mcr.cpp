@@ -2,24 +2,24 @@
 using namespace std;
 
 bool isFill(char game[3][3],int i,int j){
-    if (game[i][j] == 'X' || game[i][j] == 'O')
+    if (game[i][j] == 'X' || game[i][j] == 'O') 
         return true;
     return false;
 }
 
 bool isWin(char game[3][3]){
-    //先检测是否填了，如果没填，则与之相关的行、列、斜线都不用判断了。
+    //先检测是否填了，如果没填，则与之相关的行、列、斜线都不用判断了，只需(0,0),(1,1),(2,2)三个位置即可覆盖所有行列和斜线。
     if (isFill(game, 0, 0)){
         if (game[0][0] == game[0][1] && game[0][1] == game[0][2]) return true;
         if (game[0][0] == game[1][0] && game[1][0] == game[2][0]) return true;
     }
-    else if(isFill(game, 1, 1)){
+    if(isFill(game, 1, 1)){
         if (game[1][0] == game[1][1] && game[1][1] == game[1][2]) return true;
         if (game[0][1] == game[1][1] && game[1][1] == game[2][1]) return true; 
         if (game[0][0] == game[1][1] && game[1][1] == game[2][2]) return true; 
         if (game[0][2] == game[1][1] && game[1][1] == game[2][0]) return true; 
     }
-    else if(isFill(game, 2, 2)){
+    if(isFill(game, 2, 2)){
         if (game[2][0] == game[2][1] && game[2][1] == game[2][2]) return true;
         if (game[0][2] == game[1][2] && game[1][2] == game[2][2]) return true; 
     }
